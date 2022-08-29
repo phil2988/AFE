@@ -1,0 +1,7 @@
+
+<app-navbar></app-navbar>
+<div id="course-list" *ngFor="let course of courses;">
+  <app-course-list-item [_course]=course>
+  </app-course-list-item>
+</div>
+<router-outlet></router-outlet>
