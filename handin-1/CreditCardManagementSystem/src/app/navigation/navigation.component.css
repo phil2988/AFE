@@ -1,0 +1,13 @@
+#nav-icon{
+    transform: scale(1.5);
+}
+
+mat-drawer-container{
+    height: 100%;
+    background-color: transparent;
+}
+
+mat-drawer{
+    height: 100%;
+    padding: 5%;
+}
