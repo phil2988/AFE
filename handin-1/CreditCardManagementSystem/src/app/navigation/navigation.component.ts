@@ -7,13 +7,20 @@ import { NavigationService } from './navigation.service';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
   service: NavigationService;
 
   constructor(service: NavigationService) {
     this.service = service;
    }
+   routeToHome(){
+    this.service.routeToUrl("/home")
+   }
+   routeToAddCreditCard(){
+    this.service.routeToUrl("/add-credit-card")
+   }
 
-  ngOnInit(): void {
-  }  
+   routeToTransactions(){
+    this.service.routeToUrl("/transactions")
+   }
 }

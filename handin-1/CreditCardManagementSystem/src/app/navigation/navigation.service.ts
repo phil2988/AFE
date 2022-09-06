@@ -10,13 +10,7 @@ export class NavigationService {
     private router: Router
   ) { }
 
-  routeToHome(){
-    this.router.navigate(['/home']);
-  }
-  routeToAddCreditCard(){
-    this.router.navigate(['/add-credit-card']);
-  }
-  routeToTransactions(){
-    this.router.navigate(['/transactions']);
+  routeToUrl(url: string){
+    this.router.navigateByUrl(url);
   }
 }

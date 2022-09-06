@@ -2,20 +2,14 @@
     <mat-drawer #drawer mode="side">
       <h3>Page Navigation</h3>
       <mat-selection-list multiple="false">
-        <mat-list-option>
-            <div (click)="service.routeToHome()">
-                Home Page
-            </div>
+        <mat-list-option (click)="routeToHome()">
+          Home Page
         </mat-list-option>
-        <mat-list-option>
-            <div (click)="service.routeToAddCreditCard()">
-                Add Credit Card
-            </div>
+        <mat-list-option (click)="routeToAddCreditCard()">
+          Add Credit Card
         </mat-list-option>
-        <mat-list-option>
-            <div (click)="service.routeToTransactions()">
-                Transactions
-            </div>
+        <mat-list-option (click)="routeToTransactions()">
+          Transactions
         </mat-list-option>
       </mat-selection-list>
     </mat-drawer>

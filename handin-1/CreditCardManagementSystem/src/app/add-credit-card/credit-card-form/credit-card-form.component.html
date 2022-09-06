@@ -1,0 +1,33 @@
+<div>
+  <form [formGroup]="creditCardForm" (ngSubmit)="submitCard()">
+    <mat-form-field >
+      <mat-label for="card-holder">Card Holder: </mat-label>
+      <input matInput id="card-holder" type="text" formControlName="cardHolder" required>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label for="card-number">Card Number: </mat-label>
+      <input matInput id="card-number" type="text" formControlName="cardNumber" required>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label for="csc-code">CSC Code: </mat-label>
+      <input matInput id="csc-code" type="text" formControlName="cscCode" required>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label for="card-issuer">Card Issuer: </mat-label>
+      <input matInput id="card-issuer" type="text" formControlName="cardIssuer" required>
+    </mat-form-field>
+    <h3>Expiration Date</h3>
+    <div id="credit-card-form-expiration-date" formGroupName="expirationDate">
+      <mat-form-field >
+        <mat-label for="month">Month: </mat-label>
+        <input matInput id="month" type="number" formControlName="month" required>
+      </mat-form-field>
+
+      <mat-form-field >
+        <mat-label for="year">Year: </mat-label>
+        <input matInput id="year" type="number" formControlName="year" required>
+      </mat-form-field>
+    </div>
+    <button mat-button type="submit" [disabled]="!creditCardForm.valid">Submit</button>
+  </form>
+</div>

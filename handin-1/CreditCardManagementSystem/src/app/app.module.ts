@@ -10,7 +10,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
-
+import { AddCreditCardModule } from './add-credit-card/add-credit-card.module';
 
 @NgModule({
   declarations: [
@@ -20,9 +20,13 @@ import {MatListModule} from '@angular/material/list';
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    AddCreditCardModule,
+
+    BrowserAnimationsModule,
+
     MatSidenavModule,
     MatButtonModule,
-    BrowserAnimationsModule,
     MatIconModule,
     MatListModule
   ],
