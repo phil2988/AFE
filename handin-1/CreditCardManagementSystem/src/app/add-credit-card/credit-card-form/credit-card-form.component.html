@@ -1,33 +1,46 @@
 <div>
   <form [formGroup]="creditCardForm" (ngSubmit)="submitCard()">
     <mat-form-field >
-      <mat-label for="card-holder">Card Holder: </mat-label>
-      <input matInput id="card-holder" type="text" formControlName="cardHolder" required>
+      <mat-label for="card-holder">Card Holder:</mat-label>
+      <mat-error *ngIf="creditCardForm.controls['cardHolder'].hasError('required')">Field is required</mat-error>
+      <mat-error *ngIf="creditCardForm.controls['cardHolder'].hasError('maxlength')">Max 30 characters</mat-error>
+      <input matInput id="card-holder" type="text" formControlName="cardHolder">
     </mat-form-field>
     <mat-form-field >
-      <mat-label for="card-number">Card Number: </mat-label>
-      <input matInput id="card-number" type="text" formControlName="cardNumber" required>
+      <mat-label for="card-number">Card Number:</mat-label>
+      <mat-error *ngIf="creditCardForm.controls['cardNumber'].hasError('required')">Field is required</mat-error>
+      <mat-error *ngIf="creditCardForm.controls['cardNumber'].hasError('pattern')">Only numbers allowed</mat-error>
+      <input matInput id="card-number" type="text" formControlName="cardNumber">
     </mat-form-field>
     <mat-form-field >
-      <mat-label for="csc-code">CSC Code: </mat-label>
-      <input matInput id="csc-code" type="text" formControlName="cscCode" required>
+      <mat-label for="csc-code">CSC Code:</mat-label>
+      <mat-error *ngIf="creditCardForm.controls['cscCode'].hasError('required')">Field is required</mat-error>
+      <mat-error *ngIf="creditCardForm.controls['cscCode'].hasError('pattern')">Only numbers allowed</mat-error>
+      <mat-error *ngIf="creditCardForm.controls['cscCode'].hasError('min') || creditCardForm.controls['cscCode'].hasError('max')" >CSC code needs to be between 100 and 999</mat-error>
+      <input matInput id="csc-code" type="text" formControlName="cscCode">
     </mat-form-field>
     <mat-form-field >
-      <mat-label for="card-issuer">Card Issuer: </mat-label>
-      <input matInput id="card-issuer" type="text" formControlName="cardIssuer" required>
+      <mat-label for="card-issuer">Card Issuer:</mat-label>
+      <mat-error *ngIf="creditCardForm.controls['cardIssuer'].hasError('required')">Field is required</mat-error>
+      <mat-error *ngIf="creditCardForm.controls['cardHolder'].hasError('maxlength')">Max 30 characters</mat-error>
+      <input matInput id="card-issuer" type="text" formControlName="cardIssuer">
     </mat-form-field>
     <h3>Expiration Date</h3>
-    <div id="credit-card-form-expiration-date" formGroupName="expirationDate">
+    <div id="credit-card-form-expiration-date" [formGroup]="expirationDate">
       <mat-form-field >
-        <mat-label for="month">Month: </mat-label>
-        <input matInput id="month" type="number" formControlName="month" required>
+        <mat-label for="month">Month:</mat-label>
+        <mat-error *ngIf="expirationDate.controls['month'].hasError('required')" >Field is required</mat-error>
+        <mat-error *ngIf="expirationDate.controls['month'].hasError('min') || expirationDate.controls['month'].hasError('max')" >Month needs to be between 1 and 12</mat-error>
+        <input matInput id="month" formControlName="month">
       </mat-form-field>
 
       <mat-form-field >
-        <mat-label for="year">Year: </mat-label>
-        <input matInput id="year" type="number" formControlName="year" required>
+        <mat-label for="year">Year:</mat-label>
+        <mat-error *ngIf="expirationDate.controls['year'].hasError('required')" >Field is required</mat-error>
+        <mat-error *ngIf="expirationDate.controls['year'].hasError('min') || expirationDate.controls['year'].hasError('max')" >Year needs to be between 1 and 31</mat-error>
+        <input matInput id="year" formControlName="year">
       </mat-form-field>
     </div>
-    <button mat-button type="submit" [disabled]="!creditCardForm.valid">Submit</button>
+    <button mat-raised-button type="submit">Submit</button>
   </form>
 </div>
