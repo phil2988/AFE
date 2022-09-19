@@ -1,5 +1,9 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
+import { CreditCard } from 'src/app/entities/credit-card';
 
 @Component({
   selector: 'app-credit-card-form',
@@ -9,9 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CreditCardFormComponent {
   creditCardForm: FormGroup;
 
-  creditCard?: CreditCard;
-
-  constructor(private appService: AppService){
+  constructor(private service: AppService, private router: Router){
 
     this.creditCardForm = new FormGroup({
       cardHolder: new FormControl('', [
@@ -49,7 +51,20 @@ export class CreditCardFormComponent {
     });
   }
 
-  submitCard(){
-    console.log(this.creditCardForm)
+  async submitCard(){
+    const card: CreditCard = {
+      card_number: this.creditCardForm.get('cardNumber')?.value,
+      csc_code: this.creditCardForm.get('cscCode')?.value,
+      cardholder_name: this.creditCardForm.get('cardHolder')?.value,
+      expiration_date_month: this.creditCardForm.get('expirationDate.month')?.value,
+      expiration_date_year: this.creditCardForm.get('expirationDate.year')?.value,
+      issuer: this.creditCardForm.get('cardIssuer')?.value
+    }
+    await this.service.sendApiRequest(
+      'POST', 
+      'http://localhost:3000/credit_cards', 
+      card
+    )
+    this.router.navigateByUrl('/')
   }
 }

@@ -1,6 +1,5 @@
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
 
 type RequestType = "GET" | "DELETE" | "POST" | "PUT" | "PATCH";
 
@@ -13,40 +12,37 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  sendApiRequest<T = object>(type: RequestType, url: string, body?: object){
-    switch (type) {
-      case 'GET':
-        return new Promise((resolve, reject) => {
-          this.http.get("http://localhost:3000/credit_cards", {observe: 'response'})
-            .subscribe(response => {
-              if(response.status == 200){
-                resolve(response)
-              }
-              else{
-                reject(response)
-              }
-            },
-            error => {
-              reject(error);
-            })
+  async sendApiRequest(type: RequestType, url: string, body?: object): Promise<HttpResponse<object>>{
+    if(type == 'GET'){
+      this.http.get(url, {observe: 'response'})
+        .subscribe({
+          next: (resp) => {
+              return resp
+          }
         })
-      case 'POST':
-        return new Promise((resolve, reject) => {
-          this.http.post("http://localhost:3000/credit_cards", body, {observe: 'response'})
-            .subscribe(response => {
-              if(response.status == 201 || response.status == 200){
-                resolve(response)
-              }
-              else{
-                reject(response)
-              }
-            },
-            error => {
-              reject(error);
-            })
-        })
-      default:
-        throw Error("RequestType is not implemented");
     }
+
+    if(type == 'POST'){
+      this.http.post(url, body, {observe: 'response'})
+        .subscribe({
+          complete: () => {
+            console.log("Completed api request!")
+          },
+          error: (e) => {
+            return new HttpResponse<object>({
+              status: 400,
+              statusText: e
+            })
+          },
+          next: (resp) => {
+            return resp
+          }
+      })
+    }
+
+
+    return new HttpResponse<object>({
+      status: 500,
+    })
   }
 }
