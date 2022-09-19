@@ -1,6 +1,6 @@
 <div>
   <form [formGroup]="creditCardForm" (ngSubmit)="submitCard()">
-    <mat-form-field >
+    <mat-form-field>
       <mat-label for="card-holder">Card Holder:</mat-label>
       <mat-error *ngIf="creditCardForm.controls['cardHolder'].hasError('required')">Field is required</mat-error>
       <mat-error *ngIf="creditCardForm.controls['cardHolder'].hasError('maxlength')">Max 30 characters</mat-error>
@@ -26,18 +26,18 @@
       <input matInput id="card-issuer" type="text" formControlName="cardIssuer">
     </mat-form-field>
     <h3>Expiration Date</h3>
-    <div id="credit-card-form-expiration-date" [formGroup]="expirationDate">
+    <div id="credit-card-form-expiration-date" formGroupName="expirationDate">
       <mat-form-field >
         <mat-label for="month">Month:</mat-label>
-        <mat-error *ngIf="expirationDate.controls['month'].hasError('required')" >Field is required</mat-error>
-        <mat-error *ngIf="expirationDate.controls['month'].hasError('min') || expirationDate.controls['month'].hasError('max')" >Month needs to be between 1 and 12</mat-error>
+        <mat-error *ngIf="this.creditCardForm.controls['expirationDate'].value.month.hasError('required')" >Field is required</mat-error>
+        <mat-error *ngIf="this.creditCardForm.controls['expirationDate'].value.month.hasError('min') || this.creditCardForm.controls['expirationDate'].value.month.hasError('max')" >Month needs to be between 1 and 12</mat-error>
         <input matInput id="month" formControlName="month">
       </mat-form-field>
 
       <mat-form-field >
         <mat-label for="year">Year:</mat-label>
-        <mat-error *ngIf="expirationDate.controls['year'].hasError('required')" >Field is required</mat-error>
-        <mat-error *ngIf="expirationDate.controls['year'].hasError('min') || expirationDate.controls['year'].hasError('max')" >Year needs to be between 1 and 31</mat-error>
+        <!-- <mat-error *ngIf="expirationDate.controls['year'].hasError('required')" >Field is required</mat-error>
+        <mat-error *ngIf="expirationDate.controls['year'].hasError('min') || expirationDate.controls['year'].hasError('max')" >Year needs to be between 1 and 31</mat-error> -->
         <input matInput id="year" formControlName="year">
       </mat-form-field>
     </div>

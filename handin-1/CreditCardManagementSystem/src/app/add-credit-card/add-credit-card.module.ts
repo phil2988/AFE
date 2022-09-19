@@ -19,6 +19,6 @@ import { MatButtonModule } from '@angular/material/button';
 
     MatInputModule,
     MatButtonModule
-  ]
+  ],
 })
 export class AddCreditCardModule { }

@@ -10,9 +10,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddCreditCardModule } from './add-credit-card/add-credit-card.module';
-import { NavigationComponent } from './navigation/navigation.component';
-import { MatTableModule } from '@angular/material/table';
 import { HomeScreenModule } from './home-screen/home-screen.module';
+import { NavigationComponent } from './navigation/navigation.component';
+import { AppService } from './app.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { HomeScreenModule } from './home-screen/home-screen.module';
     MatIconModule,
     MatListModule,
   ],
-  providers: [],
+  providers: [ AppService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
