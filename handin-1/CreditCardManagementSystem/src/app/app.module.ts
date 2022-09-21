@@ -13,6 +13,7 @@ import { AddCreditCardModule } from './add-credit-card/add-credit-card.module';
 import { HomeScreenModule } from './home-screen/home-screen.module';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AppService } from './app.service';
+import { CreditCardDetailsModule } from './credit-card-details/credit-card-details.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AppService } from './app.service';
     BrowserModule,
     AppRoutingModule,
     HomeScreenModule,
+    CreditCardDetailsModule,
 
     AddCreditCardModule,
 

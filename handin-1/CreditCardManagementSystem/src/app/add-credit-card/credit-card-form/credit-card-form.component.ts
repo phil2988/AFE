@@ -17,18 +17,20 @@ export class CreditCardFormComponent {
 
     this.creditCardForm = new FormGroup({
       cardHolder: new FormControl('', [
-        Validators.required, 
+        Validators.required,
         Validators.maxLength(30)
       ]),
       cardNumber: new FormControl('', [
-        Validators.required, 
-        Validators.pattern("^[0-9]*$")
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.maxLength(16),
+        Validators.minLength(7)
       ]),
       cscCode: new FormControl('', [
-        Validators.required, 
+        Validators.required,
         Validators.pattern("^[0-9]*$"),
-        Validators.min(100),
-        Validators.max(999)
+        Validators.minLength(3),
+        Validators.maxLength(3)
       ]),
       cardIssuer: new FormControl('', [
         Validators.required,
@@ -61,8 +63,8 @@ export class CreditCardFormComponent {
       issuer: this.creditCardForm.get('cardIssuer')?.value
     }
     await this.service.sendApiRequest(
-      'POST', 
-      'http://localhost:3000/credit_cards', 
+      'POST',
+      'http://localhost:3000/credit_cards',
       card
     )
     this.router.navigateByUrl('/')
