@@ -1,0 +1,39 @@
+mat-table {
+    width: 93%;
+}
+
+.mat-header-text{
+    font-weight: bold;
+}
+
+
+mat-header-row {
+    display: flex;
+    flex-direction: row;
+}
+
+mat-cell.mat-column-cardholder_name, mat-header-cell.mat-column-cardholder_name{
+    padding-left: 5%;
+    flex-basis: 15%;
+}
+
+mat-cell.mat-column-card_number, mat-header-cell.mat-column-card_number{
+    flex-basis: 15%;
+}
+
+mat-cell.mat-column-csc_code, mat-header-cell.mat-column-csc_code{
+    flex-basis: 10%;
+}
+
+mat-cell.mat-column-expiration_date_year, mat-header-cell.mat-column-expiration_date_year{
+    flex-basis: 5%;
+}
+
+mat-cell.mat-column-expiration_date_month, mat-header-cell.mat-column-expiration_date_month{
+    flex-basis: 5%;
+}
+
+mat-cell.mat-column-issuer, mat-header-cell.mat-column-issuer{
+    padding-right: 5%;
+    flex-basis: 10%;
+}
