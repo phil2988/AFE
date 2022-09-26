@@ -1,6 +1,6 @@
 <h3>Current Credit Cards Registered</h3>
 
-<mat-table [dataSource]="dataSource$" class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource!" class="mat-elevation-z8">
     <ng-container class="cardholder-name" matColumnDef="cardholder_name">
         <mat-header-cell class="cardholder-name-header" mat-header-cell *matHeaderCellDef><p class="mat-header-text">Card Holder</p></mat-header-cell>
         <mat-cell mat-cell *matCellDef="let card"> {{card.cardholder_name}}! </mat-cell>
@@ -17,12 +17,12 @@
     </ng-container>
 
     <ng-container matColumnDef="expiration_date_month">
-        <mat-header-cell class="expiration-date-month-header" *matHeaderCellDef> Expiration Month</mat-header-cell>
+        <mat-header-cell class="expiration-date-month-header" *matHeaderCellDef> Month</mat-header-cell>
         <mat-cell *matCellDef="let card"> {{card.expiration_date_month}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="expiration_date_year">
-        <mat-header-cell class="expiration-date-year-header" *matHeaderCellDef> Expiration Year </mat-header-cell>
+        <mat-header-cell class="expiration-date-year-header" *matHeaderCellDef> Year </mat-header-cell>
         <mat-cell *matCellDef="let card"> {{card.expiration_date_year}} </mat-cell>
     </ng-container>
 
@@ -35,6 +35,6 @@
     <mat-row mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 
-<div *ngIf="!dataSource$">
+<div *ngIf="!dataSource">
     No Data Found
 </div>

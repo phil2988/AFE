@@ -14,6 +14,8 @@ import { AppService } from './app.service';
 import { CreditCardDetailsModule } from './credit-card-details/credit-card-details.module';
 import { HomeScreenModule } from './home-screen/home-screen.module';
 import { NavigationComponent } from './navigation/navigation.component';
+import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,17 +25,19 @@ import { NavigationComponent } from './navigation/navigation.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeScreenModule,
-    CreditCardDetailsModule,
+    HttpClientModule,
 
+    HomeScreenModule,
     AddCreditCardModule,
+    CreditCardDetailsModule,
 
     BrowserAnimationsModule,
 
+    MatTableModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [ AppService],
   bootstrap: [AppComponent],
