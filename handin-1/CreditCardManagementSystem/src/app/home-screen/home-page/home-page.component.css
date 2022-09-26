@@ -15,28 +15,22 @@ mat-header-row {
 mat-cell.mat-column-cardholder_name, mat-header-cell.mat-column-cardholder_name{
     padding-left: 5%;
     flex-basis: 15%;
-    flex-wrap: wrap;
 }
 
 mat-cell.mat-column-card_number, mat-header-cell.mat-column-card_number{
     flex-basis: 15%;
-    flex-wrap: wrap;
 }
 
 mat-cell.mat-column-csc_code, mat-header-cell.mat-column-csc_code{
     flex-basis: 10%;
-    justify-content: center;
 }
 
 mat-cell.mat-column-expiration_date_year, mat-header-cell.mat-column-expiration_date_year{
-    flex-basis: 3%;
-    justify-content: center;
-    padding-right: 3%;
+    flex-basis: 5%;
 }
 
 mat-cell.mat-column-expiration_date_month, mat-header-cell.mat-column-expiration_date_month{
-    flex-basis: 3%;
-    justify-content: center;
+    flex-basis: 5%;
 }
 
 mat-cell.mat-column-issuer, mat-header-cell.mat-column-issuer{
