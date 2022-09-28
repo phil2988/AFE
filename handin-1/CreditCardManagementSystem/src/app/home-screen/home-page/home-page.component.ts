@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { AfterViewInit, Component } from '@angular/core';
+import { from, Observable, switchMap, of, tap } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { CreditCard } from 'src/app/entities/credit-card';
 
@@ -7,15 +9,31 @@ import { CreditCard } from 'src/app/entities/credit-card';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent{
-  dataSource?: CreditCard[];
+export class HomePageComponent implements AfterViewInit{
+  dataSource$ = new Observable<CreditCard[]>()
   displayedColumns: string[] = ['cardholder_name', 'card_number', 'csc_code', 'expiration_date_month', 'expiration_date_year', 'issuer'];
 
-  constructor(private service: AppService){
-    this.getData()
+  constructor(private service: AppService, private http: HttpClient){
+    this.service.sendApiRequest<CreditCard[]>(
+      'GET',
+      "http://localhost:3000/credit_cards"
+    ).subscribe((res) => {
+      if(res.status == 200){
+        this.dataSource$ = of(res.body as CreditCard[])
+        console.log("Completed!")
+      }
+      else
+      {
+        this.dataSource$ = of(<CreditCard[]>[])
+        console.error(res)
+      }
+    })
+  }
+  ngAfterViewInit() {
+    this.updateDataSource()
   }
 
-  async getData(){
-    this.dataSource = (await this.service.sendApiRequest('GET', "http://localhost:3000/credit_cards")).body as CreditCard[];
+  async updateDataSource(){
+    // this.dataSource$ = of((await
   }
 }

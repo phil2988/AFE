@@ -1,5 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 type RequestType = "GET" | "DELETE" | "POST" | "PUT" | "PATCH";
 
@@ -12,37 +13,57 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  async sendApiRequest(type: RequestType, url: string, body?: object): Promise<HttpResponse<object>>{
-    if(type == 'GET'){
-      this.http.get(url, {observe: 'response'})
-        .subscribe({
-          next: (resp) => {
-              return resp
-          }
-        })
-    }
+  sendApiRequest<T = object>(type: RequestType, url: string, body?: object): Observable<HttpResponse<T>>{
+      return new Observable((observer) => {
+        if(type == 'GET'){
+          this.http.get<T>(url, {observe: 'response'})
+          .subscribe({
+            complete: () => {
+              console.log("Completed api request!")
+            },
+            error: (e) => {
+              observer.error(new HttpResponse<T>({
+                status: 400,
+                statusText: e,
+                body: e
+              }))
+            },
+            next: (resp) => {
+              console.log("Returned:", resp)
+              observer.next(resp)
+            }
+          })
+        }
+        if(type == 'POST'){
+          this.http.post<T>(url, body, {observe: 'response'})
+            .subscribe({
+              complete: () => {
+                console.log("Completed api request!")
+              },
+              error: (e) => {
+                return new HttpResponse<T>({
+                  status: 400,
+                  statusText: e,
+                  body: e
+                })
+              },
+              next: (resp) => {
+                return resp
+              }
+          })
+        }
+        // if{
+        //   observer.error(new HttpResponse<T>({
+        //     status: 500,
+        //     statusText: "Something unexpected happened..."
+        //   }))
+        // }
+        return {
+          unsubscribe() {
 
-    if(type == 'POST'){
-      this.http.post(url, body, {observe: 'response'})
-        .subscribe({
-          complete: () => {
-            console.log("Completed api request!")
           },
-          error: (e) => {
-            return new HttpResponse<object>({
-              status: 400,
-              statusText: e
-            })
-          },
-          next: (resp) => {
-            return resp
-          }
-      })
-    }
-
-
-    return new HttpResponse<object>({
-      status: 500,
-    })
+        }
+      }
+    )
   }
 }

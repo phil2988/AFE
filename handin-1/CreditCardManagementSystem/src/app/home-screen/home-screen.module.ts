@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,6 +15,7 @@ import { HomePageComponent } from './home-page/home-page.component';
   imports: [
     CommonModule,
     MatTableModule,
+    HttpClientModule,
   ]
 })
 export class HomeScreenModule { }

@@ -67,6 +67,12 @@ export class CreditCardFormComponent {
       'http://localhost:3000/credit_cards',
       card
     )
-    this.router.navigateByUrl('/')
+    // .then(
+      // (res) => {
+
+      //   if(res.status == 201)
+          this.router.navigateByUrl('/')
+        // }
+    // )
   }
 }
