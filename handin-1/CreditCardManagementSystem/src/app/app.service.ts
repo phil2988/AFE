@@ -16,52 +16,34 @@ export class AppService {
   sendApiRequest<T = object>(type: RequestType, url: string, body?: object): Observable<HttpResponse<T>>{
       return new Observable((observer) => {
         if(type == 'GET'){
-          this.http.get<T>(url, {observe: 'response'})
+          this.http.get<T>(this.apiUrl + url, {observe: 'response'})
           .subscribe({
-            complete: () => {
-              console.log("Completed api request!")
-            },
             error: (e) => {
               observer.error(new HttpResponse<T>({
                 status: 400,
-                statusText: e,
-                body: e
+                statusText: "Error"
               }))
             },
             next: (resp) => {
-              console.log("Returned:", resp)
+              console.log(resp)
               observer.next(resp)
             }
           })
         }
         if(type == 'POST'){
-          this.http.post<T>(url, body, {observe: 'response'})
+          this.http.post<T>(this.apiUrl + url, body, {observe: 'response'})
             .subscribe({
-              complete: () => {
-                console.log("Completed api request!")
-              },
               error: (e) => {
-                return new HttpResponse<T>({
+                observer.error(new HttpResponse<T>({
                   status: 400,
-                  statusText: e,
-                  body: e
-                })
+                  statusText: "Error"
+                }))
               },
               next: (resp) => {
-                return resp
+                console.log(resp)
+                observer.next(resp)
               }
           })
-        }
-        // if{
-        //   observer.error(new HttpResponse<T>({
-        //     status: 500,
-        //     statusText: "Something unexpected happened..."
-        //   }))
-        // }
-        return {
-          unsubscribe() {
-
-          },
         }
       }
     )

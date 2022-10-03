@@ -9,31 +9,27 @@ import { CreditCard } from 'src/app/entities/credit-card';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements AfterViewInit{
-  dataSource$ = new Observable<CreditCard[]>()
-  displayedColumns: string[] = ['cardholder_name', 'card_number', 'csc_code', 'expiration_date_month', 'expiration_date_year', 'issuer'];
+
+export class HomePageComponent{
+  dataSource$ = new Observable<CreditCard[]>();
+  displayedColumns: string[] = [
+    'cardholder_name',
+    'card_number',
+    'csc_code',
+    'expiration_date_month',
+    'expiration_date_year',
+    'issuer'
+  ];
 
   constructor(private service: AppService, private http: HttpClient){
     this.service.sendApiRequest<CreditCard[]>(
       'GET',
-      "http://localhost:3000/credit_cards"
+      "credit_cards"
     ).subscribe((res) => {
       if(res.status == 200){
         this.dataSource$ = of(res.body as CreditCard[])
         console.log("Completed!")
       }
-      else
-      {
-        this.dataSource$ = of(<CreditCard[]>[])
-        console.error(res)
-      }
     })
-  }
-  ngAfterViewInit() {
-    this.updateDataSource()
-  }
-
-  async updateDataSource(){
-    // this.dataSource$ = of((await
   }
 }

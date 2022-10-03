@@ -16,6 +16,7 @@ import { HomeScreenModule } from './home-screen/home-screen.module';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
+import { TransactionsModule } from './transactions/transactions.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeScreenModule,
     AddCreditCardModule,
     CreditCardDetailsModule,
+    TransactionsModule,
 
     BrowserAnimationsModule,
 

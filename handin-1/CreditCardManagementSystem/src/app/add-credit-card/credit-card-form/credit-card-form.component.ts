@@ -12,6 +12,7 @@ import { CreditCard } from 'src/app/entities/credit-card';
 })
 export class CreditCardFormComponent {
   creditCardForm: FormGroup;
+  cardPostError = false
 
   constructor(private service: AppService, private router: Router){
 
@@ -53,7 +54,7 @@ export class CreditCardFormComponent {
     });
   }
 
-  async submitCard(){
+  submitCard(){
     const card: CreditCard = {
       card_number: this.creditCardForm.get('cardNumber')?.value,
       csc_code: this.creditCardForm.get('cscCode')?.value,
@@ -62,17 +63,20 @@ export class CreditCardFormComponent {
       expiration_date_year: this.creditCardForm.get('expirationDate.year')?.value,
       issuer: this.creditCardForm.get('cardIssuer')?.value
     }
-    await this.service.sendApiRequest(
-      'POST',
-      'http://localhost:3000/credit_cards',
-      card
-    )
-    // .then(
-      // (res) => {
 
-      //   if(res.status == 201)
+    this.service.sendApiRequest(
+      'POST',
+      'credit_cards',
+      card
+    ).subscribe({
+      next: (res) => {
+        console.log()
+        if(res.status == 201){
           this.router.navigateByUrl('/')
-        // }
-    // )
+        }
+      },
+      // I am old, so i can use alert!
+      error: () => alert("Something went wrong when creating card. Please try again!")
+    })
   }
 }
