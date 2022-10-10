@@ -25,3 +25,13 @@ export const remove = function(req, res) {
     message: `Card ${params.card_number} deleted`
   })
 }
+
+export const card = function(req, res){
+  const params = req.params
+  console.log("Requested card: ", params.card_number)
+  const card = CREDIT_CARD_DATA.find(card => card.card_number == params.card_number)
+  console.log("Found card: ", card)
+
+  res.status(200)
+  res.json(card)
+}

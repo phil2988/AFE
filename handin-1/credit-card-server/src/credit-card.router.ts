@@ -8,6 +8,8 @@ router.use(json())
 
 router.get('/', controller.list)
 
+router.get('/:card_number', controller.card)
+
 router.post('/', controller.create)
 
 router.delete('/:card_number', controller.remove)

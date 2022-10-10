@@ -4,6 +4,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { from, Observable, switchMap, of, tap } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { CreditCard } from 'src/app/entities/credit-card';
@@ -28,7 +29,12 @@ export class HomePageComponent{
     'issuer'
   ];
 
-  constructor(private service: AppService, private http: HttpClient, private _liveAnnouncer: LiveAnnouncer){
+  constructor(
+    private service: AppService, 
+    private http: HttpClient, 
+    private _liveAnnouncer: LiveAnnouncer, 
+    private router: Router
+  ){
     this.service.sendApiRequest<CreditCard[]>(
       'GET',
       "credit_cards"
@@ -49,4 +55,11 @@ export class HomePageComponent{
     }
   }
 
+  goToDetailsPage(card: CreditCard){
+    this.router.navigate(
+      ['/credit-card-details'], 
+      {queryParams: {
+        cardNumber: card.card_number
+      }} )
+  }
 }
