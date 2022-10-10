@@ -4,13 +4,13 @@ import { TransactionsPageComponent } from './transactions-page/transactions-page
 import { TransactionsListComponent } from './transactions-list/transactions-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { MsToDatePipe } from '../ms-to-date.pipe';
 
 @NgModule({
   declarations: [
     TransactionsPageComponent,
-    TransactionsListComponent
+    TransactionsListComponent,
+    MsToDatePipe
   ],
   imports: [
     CommonModule,
