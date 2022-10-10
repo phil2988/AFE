@@ -4,15 +4,15 @@
             margin-bottom: 5px;">
     <h3>Credit Cards Registered</h3>
 
-    <mat-paginator [pageSizeOptions]="[10, 20, 50]"
+    <mat-paginator [pageSizeOptions]="[15, 50, 100]"
         showFirstLastButtons 
         aria-label="Select page of transactions">
     </mat-paginator>
 </div>
 
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
     <ng-container class="cardholder-name" matColumnDef="cardholder_name">
-        <mat-header-cell class="cardholder-name-header" mat-header-cell *matHeaderCellDef>
+        <mat-header-cell mat-sort-header class="cardholder-name-header" *matHeaderCellDef>
             Card Holder
         </mat-header-cell>
         <mat-cell *matCellDef="let card"> 
@@ -21,7 +21,7 @@
     </ng-container>
     
     <ng-container matColumnDef="card_number">
-        <mat-header-cell class="card-number-header" *matHeaderCellDef> 
+        <mat-header-cell mat-sort-header class="card-number-header" *matHeaderCellDef> 
             Card Number 
         </mat-header-cell>
         <mat-cell *matCellDef="let card"> 
@@ -30,7 +30,7 @@
     </ng-container>
 
     <ng-container matColumnDef="csc_code">
-        <mat-header-cell class="csc-code-header" *matHeaderCellDef> 
+        <mat-header-cell mat-sort-header class="csc-code-header" *matHeaderCellDef> 
             CSC Code 
         </mat-header-cell>
         <mat-cell *matCellDef="let card"> 
@@ -39,7 +39,7 @@
     </ng-container>
 
     <ng-container matColumnDef="expiration_date_month">
-        <mat-header-cell class="expiration-date-month-header" *matHeaderCellDef> 
+        <mat-header-cell mat-sort-header class="expiration-date-month-header" *matHeaderCellDef> 
             Month
         </mat-header-cell>
         <mat-cell *matCellDef="let card"> 
@@ -48,7 +48,7 @@
     </ng-container>
 
     <ng-container matColumnDef="expiration_date_year">
-        <mat-header-cell class="expiration-date-year-header" *matHeaderCellDef> 
+        <mat-header-cell mat-sort-header class="expiration-date-year-header" *matHeaderCellDef> 
             Year 
         </mat-header-cell>
         <mat-cell *matCellDef="let card"> 
@@ -57,7 +57,7 @@
     </ng-container>
 
     <ng-container matColumnDef="issuer">
-        <mat-header-cell class="issuer-header" *matHeaderCellDef> 
+        <mat-header-cell mat-sort-header class="issuer-header" *matHeaderCellDef> 
             Issuer 
         </mat-header-cell>
         <mat-cell *matCellDef="let card"> 

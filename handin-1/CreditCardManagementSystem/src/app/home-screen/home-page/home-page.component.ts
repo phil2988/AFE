@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { from, Observable, switchMap, of, tap } from 'rxjs';
 import { AppService } from 'src/app/app.service';
@@ -15,6 +17,7 @@ import { CreditCard } from 'src/app/entities/credit-card';
 export class HomePageComponent{
   dataSource = new MatTableDataSource<CreditCard>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   displayedColumns: string[] = [
     'cardholder_name',
@@ -25,7 +28,7 @@ export class HomePageComponent{
     'issuer'
   ];
 
-  constructor(private service: AppService, private http: HttpClient){
+  constructor(private service: AppService, private http: HttpClient, private _liveAnnouncer: LiveAnnouncer){
     this.service.sendApiRequest<CreditCard[]>(
       'GET',
       "credit_cards"
@@ -33,8 +36,17 @@ export class HomePageComponent{
       if(res.status == 200){
         this.dataSource.data = res.body as CreditCard[]
         this.dataSource.paginator = this.paginator
-        console.log("Completed!")
+        this.dataSource.sort = this.sort
       }
     })
   }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
 }

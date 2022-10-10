@@ -29,3 +29,15 @@ mat-cell.mat-column-issuer, mat-header-cell.mat-column-issuer{
   padding-right: 5%;
   flex-basis: 10%;
 }
+
+::ng-deep mat-header-cell.csc-code-header div.mat-sort-header-container{
+  padding-left: 18px;
+}
+
+::ng-deep mat-header-cell.expiration-date-year-header div.mat-sort-header-container{
+  padding-left: 18px;
+}
+
+::ng-deep mat-header-cell.expiration-date-month-header div.mat-sort-header-container{
+  padding-left: 18px;
+}
