@@ -1,0 +1,49 @@
+
+mat-cell.card-number-cell, 
+mat-header-cell.card-number-header{
+    padding-left: 5%;
+    flex: 10%;
+    flex-wrap: wrap;
+}
+
+mat-cell.amount-cell, 
+mat-header-cell.amount-header{
+    flex: 5%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+mat-cell.comment-cell, 
+mat-header-cell.comment-header{
+    flex: 15%;
+    justify-content: center;
+}
+
+mat-cell.date-cell, 
+mat-header-cell.date-header{
+    flex: 10%;
+    justify-content: center;
+}
+
+mat-cell.currency-cell, 
+mat-header-cell.currency-header{
+    flex: 5%;
+    justify-content: center;
+    padding-right: 3%;
+}
+
+::ng-deep mat-header-cell.amount-header div.mat-sort-header-container{
+    padding-left: 18px;
+}
+
+::ng-deep mat-header-cell.comment-header div.mat-sort-header-container{
+    padding-left: 18px;
+}
+
+::ng-deep mat-header-cell.date-header div.mat-sort-header-container{
+    padding-left: 18px;
+}
+
+::ng-deep mat-header-cell.currency-header div.mat-sort-header-container{
+    padding-left: 18px;
+}

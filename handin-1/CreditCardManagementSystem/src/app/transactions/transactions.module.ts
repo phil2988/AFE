@@ -5,6 +5,8 @@ import { TransactionsListComponent } from './transactions-list/transactions-list
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { MsToDatePipe } from '../ms-to-date.pipe';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { MsToDatePipe } from '../ms-to-date.pipe';
     CommonModule,
     MatTableModule,
     HttpClientModule,
+    MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class TransactionsModule { }
