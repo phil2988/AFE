@@ -4,19 +4,36 @@
       <mat-label class="top-filter-label">Filter Transactions</mat-label>
       <input matInput class="top-filter-input" (keyup)="applyFilter($event)" placeholder="Ex. 4263982640269299" #input>
     </mat-form-field>
-    <button mat-raised-button>Add new</button>
+    <button mat-raised-button (click)="addTransaction()" class="add-button" *ngIf="selection.isEmpty()">Add new</button>
+    <button mat-raised-button (click)="removeTransaction()" class="remove-button" *ngIf="!selection.isEmpty()">Delete Selected</button>
 </div>
 
 <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-  
-    <ng-container matColumnDef="card_number">
-        <mat-header-cell mat-sort-header class="credit-card-header" *matHeaderCellDef> 
-            Card Number 
-        </mat-header-cell>
-        <mat-cell class="credit-card-cell" *matCellDef="let transaction"> 
-            {{transaction.credit_card.card_number}} 
-        </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="select">
+    <mat-header-cell class="select-header" *matHeaderCellDef> 
+      <mat-checkbox (change)="$event ? toggleAllRows() : null"
+        [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell class="select-cell" *matCellDef="let row"> 
+      <mat-checkbox (click)="$event.stopPropagation()"
+        (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)"
+        [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="card_number">
+      <mat-header-cell mat-sort-header class="credit-card-header" *matHeaderCellDef> 
+          Card Number 
+      </mat-header-cell>
+      <mat-cell class="credit-card-cell" *matCellDef="let transaction"> 
+          {{transaction.credit_card.card_number}} 
+      </mat-cell>
+  </ng-container>
 
   <ng-container matColumnDef="amount">
       <mat-header-cell mat-sort-header class="amount-header" *matHeaderCellDef> 
@@ -61,6 +78,6 @@
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 
 <div *ngIf="!dataSource">
-  No Data Found.
+  No Data Found...
 </div>
 

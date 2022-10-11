@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MsToDatePipe } from '../ms-to-date.pipe';
 import { TransactionsListComponent } from './transactions-list/transactions-list.component';
 import { TransactionsPageComponent } from './transactions-page/transactions-page.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TransactionsPageComponent } from './transactions-page/transactions-page
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
   exports:[
     TransactionsListComponent
