@@ -25,7 +25,6 @@ export class AppService {
               }))
             },
             next: (resp) => {
-              console.log(resp)
               observer.next(resp)
             }
           })
@@ -40,10 +39,23 @@ export class AppService {
                 }))
               },
               next: (resp) => {
-                console.log(resp)
                 observer.next(resp)
               }
           })
+        }
+        if(type == 'DELETE'){
+          this.http.delete<T>(this.apiUrl + url, {observe: 'response'})
+            .subscribe({
+              error: (e) => {
+                observer.error(new HttpResponse<T>({
+                  status: 400,
+                  statusText: "Error"
+                }))
+              },
+              next: (resp) => {
+                observer.next(resp)
+              }
+            })
         }
       }
     )

@@ -1,6 +1,27 @@
+.top{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 5px;
+}
 
-mat-cell.card-number-cell, 
-mat-header-cell.card-number-header{
+.top-header{
+    width: 40%;
+    display: flex;
+}
+
+button{
+    height: 20%;
+    background-color: rgb(137, 204, 36);
+}
+
+.top-filter{
+    width: 40%;
+}
+
+mat-cell.credit-card-cell, 
+mat-header-cell.credit-card-header{
     padding-left: 5%;
     flex: 10%;
     flex-wrap: wrap;
@@ -46,4 +67,8 @@ mat-header-cell.currency-header{
 
 ::ng-deep mat-header-cell.currency-header div.mat-sort-header-container{
     padding-left: 18px;
+}
+
+mat-paginator{
+    margin-top: 18px;
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CreditCard } from 'src/app/entities/credit-card';
 
 @Component({
   selector: 'app-credit-card-details',
@@ -6,9 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./credit-card-details.component.css']
 })
 export class CreditCardDetailsComponent {
-  @Input() cardNumber: number | undefined;
+  @Input() creditCard: CreditCard | undefined;
 
   constructor() { }
-
-  
 }

@@ -1,43 +1,38 @@
 mat-cell.mat-column-cardholder_name, mat-header-cell.mat-column-cardholder_name{
   padding-left: 5%;
   flex-basis: 15%;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
 mat-cell.mat-column-card_number, mat-header-cell.mat-column-card_number{
-  flex-basis: 15%;
+  flex-basis: 20%;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
-mat-cell.mat-column-csc_code, mat-header-cell.mat-column-csc_code{
-  flex-basis: 10%;
-  justify-content: center;
-}
-
-mat-cell.mat-column-expiration_date_year, mat-header-cell.mat-column-expiration_date_year{
-  flex-basis: 3%;
-  justify-content: center;
-  padding-right: 3%;
-}
-
-mat-cell.mat-column-expiration_date_month, mat-header-cell.mat-column-expiration_date_month{
-  flex-basis: 3%;
-  justify-content: center;
-}
-
 mat-cell.mat-column-issuer, mat-header-cell.mat-column-issuer{
+  justify-content: center;
   padding-right: 5%;
-  flex-basis: 10%;
+  flex-basis: 15%;
 }
 
-::ng-deep mat-header-cell.csc-code-header div.mat-sort-header-container{
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+::ng-deep mat-header-cell.card-number-header div.mat-sort-header-container{
   padding-left: 18px;
 }
-
-::ng-deep mat-header-cell.expiration-date-year-header div.mat-sort-header-container{
+::ng-deep mat-header-cell.issuer-header div.mat-sort-header-container{
   padding-left: 18px;
 }
-
-::ng-deep mat-header-cell.expiration-date-month-header div.mat-sort-header-container{
+::ng-deep mat-header-cell.cardholder-name-header div.mat-sort-header-container{
   padding-left: 18px;
 }

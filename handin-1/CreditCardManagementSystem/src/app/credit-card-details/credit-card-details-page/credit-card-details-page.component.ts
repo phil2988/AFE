@@ -12,22 +12,37 @@ import { CreditCard } from 'src/app/entities/credit-card';
 export class CreditCardDetailsPageComponent {
   cardNumber: number | undefined;
   card$!: CreditCard;
+  service: AppService
 
-  constructor(private service: AppService, private route: ActivatedRoute) {
+  constructor(private s: AppService, private route: ActivatedRoute) {
+    this.service = s
     this.route.queryParams.subscribe({
       next: (params) => {
+        // Should use an uid instead, but data does not have a uid defined
         this.cardNumber = params['cardNumber']
       }
     })
-    service.sendApiRequest<CreditCard>(
+    this.service.sendApiRequest<CreditCard>
+    (
       'GET', 
-      "credit_cards/" + this.cardNumber)
-      .subscribe((res) => {
-          if(res.status == 200){
-            console.log(res.body)
-            this.card$ = res.body as CreditCard
-          }
-        }
-      )
+      "credit_cards/" + this.cardNumber
+    ).subscribe((res) => {
+      if(res.status == 200){
+        console.log(res.body)
+        this.card$ = res.body as CreditCard
+      }
+    })
+  }
+
+  deleteCard(){
+    this.service.sendApiRequest<CreditCard>
+    (
+      'DELETE', 
+      "credit_cards/" + this.cardNumber
+    ).subscribe((res) => {
+      if(res.status == 200){
+        console.log(res.body)
+      }
+    })
   }
 }

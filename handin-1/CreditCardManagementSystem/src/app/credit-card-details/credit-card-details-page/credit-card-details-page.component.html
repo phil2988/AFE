@@ -1,4 +1,12 @@
-<h2>Credit Card Details</h2>
 
-<app-credit-card-details [cardNumber]="cardNumber"></app-credit-card-details>
+<div class="top">
+    <h2>
+        Credit Card Details
+    </h2>
+    <button mat-raised-button (click)="deleteCard()">
+        Delete Card
+    </button>
+</div>
+
+<app-credit-card-details [creditCard]="card$"></app-credit-card-details>
 

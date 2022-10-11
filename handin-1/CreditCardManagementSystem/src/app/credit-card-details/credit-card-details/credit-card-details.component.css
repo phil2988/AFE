@@ -1,0 +1,80 @@
+.card-details{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+h3, p{
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+h3{
+   width: 25vw; 
+   display: flex;
+   align-items: center;
+}
+
+p{
+    padding-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-box{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 5vh;
+}
+
+.card-holder{
+    display: flex;
+}
+
+.card-number{
+    display: flex;
+}
+
+.csc-code{
+    display: flex;
+}
+
+.issuer{
+    display: flex;
+}
+
+.expiration-date.details-box{
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.expiration-date-month{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.expiration-date-month p{
+    padding-top: 5px;
+}
+
+.expiration-date-year{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    text-align: center;
+    justify-content: center;
+}
+
+.expiration-date-year p{
+    padding-top: 5px;
+}
+
+h5{
+    margin: 0%;
+}

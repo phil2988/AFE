@@ -1,12 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TransactionsPageComponent } from './transactions-page/transactions-page.component';
-import { TransactionsListComponent } from './transactions-list/transactions-list.component';
-import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
-import { MsToDatePipe } from '../ms-to-date.pipe';
+import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MsToDatePipe } from '../ms-to-date.pipe';
+import { TransactionsListComponent } from './transactions-list/transactions-list.component';
+import { TransactionsPageComponent } from './transactions-page/transactions-page.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,12 @@ import { MatSortModule } from '@angular/material/sort';
     HttpClientModule,
     MatPaginatorModule,
     MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ],
+  exports:[
+    TransactionsListComponent
   ]
 })
 export class TransactionsModule { }

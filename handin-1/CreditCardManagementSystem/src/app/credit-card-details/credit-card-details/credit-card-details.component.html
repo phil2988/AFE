@@ -1,8 +1,58 @@
-<div>
-    <p *ngIf="cardNumber == undefined">
-      card number is undefined...
-    </p>
-    <p *ngIf="cardNumber != undefined">
-      card number: {{cardNumber}}
-    </p>
+<div *ngIf="creditCard != undefined">
+  <div class="card-details">
+    <div class="card-holder details-box">
+      <h3>
+        Card Holder
+      </h3>
+      <p>
+        {{creditCard.cardholder_name}}
+      </p>
+    </div>
+    <div class="card-number details-box">
+      <h3>
+        Card number
+      </h3>
+      <p>
+        {{creditCard.card_number}}
+      </p>
+    </div>
+    <div class="csc-code details-box">
+      <h3>
+        Csc Code
+      </h3>
+      <p>
+        {{creditCard.csc_code}}
+      </p>
+    </div>
+    <div class="expiration-date details-box">
+      <h3 class="expiration-date-header">
+        Expiration Date
+      </h3>
+      <div class="expiration-date-month">
+        <h5>Month</h5>
+        <p>
+          {{creditCard.expiration_date_month}}
+        </p>
+      </div>
+      <div class="expiration-date-year">
+        <h5>Year</h5>
+        <p>
+          {{creditCard.expiration_date_year}}
+        </p>
+      </div>
+    </div>
+    <div class="issuer details-box">
+      <h3>
+        Issuer
+      </h3>
+      <p>
+        {{creditCard.issuer}}
+      </p>
+    </div>
   </div>
+  <app-transactions-list [specificCard]="creditCard.card_number"></app-transactions-list>
+</div>
+  
+<div *ngIf="creditCard == undefined">
+  Error! Credit Card is undefined...
+</div>

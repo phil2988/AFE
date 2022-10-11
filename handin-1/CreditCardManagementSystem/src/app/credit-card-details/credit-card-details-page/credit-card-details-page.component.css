@@ -1,0 +1,10 @@
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button{
+    height: 20%;
+    background-color: rgb(250, 103, 103);
+}

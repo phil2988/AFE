@@ -1,31 +1,29 @@
-<div style="display: flex; 
-            flex-direction: row; 
-            justify-content: space-between; 
-            margin-bottom: 5px;">
-    <h3>Transactions Registered</h3>
-    
-    <mat-paginator [pageSizeOptions]="[15, 50, 100]"
-        showFirstLastButtons 
-        aria-label="Select page of transactions">
-    </mat-paginator>
+<div class="top">
+    <h3 class="top-header">Transactions Registered</h3>
+    <mat-form-field class="top-filter" appearance="standard" >
+      <mat-label class="top-filter-label">Filter Credit Cards</mat-label>
+      <input matInput class="top-filter-input" (keyup)="applyFilter($event)" placeholder="Ex. 295818288599" #input>
+    </mat-form-field>
+    <button mat-raised-button>Add new</button>
 </div>
 
-<mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
-  <ng-container matColumnDef="credit_card_number">
-    <mat-header-cell mat-sort-header class="card-number-header"  *matHeaderCellDef>
-        Credit Card
-    </mat-header-cell>
-    <mat-cell class="card-number-cell" *matCellDef="let transaction"> 
-        {{transaction.credit_card.card_number}}
-    </mat-cell>
-  </ng-container>
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="card_number">
+        <mat-header-cell mat-sort-header class="credit-card-header" *matHeaderCellDef> 
+            Card Number 
+        </mat-header-cell>
+        <mat-cell class="credit-card-cell" *matCellDef="let transaction"> 
+            {{transaction.credit_card.card_number}} 
+        </mat-cell>
+    </ng-container>
 
   <ng-container matColumnDef="amount">
       <mat-header-cell mat-sort-header class="amount-header" *matHeaderCellDef> 
         Amount 
     </mat-header-cell>
     <mat-cell class="amount-cell" *matCellDef="let transaction"> 
-        {{transaction.amount | number:"2.1-2"}} 
+        {{transaction.amount | number:"2.1-4"}} 
     </mat-cell>
   </ng-container>
 
@@ -59,6 +57,8 @@
   <mat-header-row class="header-row" *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 
 <div *ngIf="!dataSource">
   No Data Found.

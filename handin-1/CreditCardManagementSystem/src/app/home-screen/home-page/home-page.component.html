@@ -11,7 +11,8 @@
 </div>
 
 <mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
-    <ng-container class="cardholder-name" matColumnDef="cardholder_name">
+    
+    <ng-container matColumnDef="cardholder_name">
         <mat-header-cell mat-sort-header class="cardholder-name-header" *matHeaderCellDef>
             Card Holder
         </mat-header-cell>
@@ -26,33 +27,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let card"> 
             {{card.card_number}} 
-        </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="csc_code">
-        <mat-header-cell mat-sort-header class="csc-code-header" *matHeaderCellDef> 
-            CSC Code 
-        </mat-header-cell>
-        <mat-cell *matCellDef="let card"> 
-            {{card.csc_code}} 
-        </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="expiration_date_month">
-        <mat-header-cell mat-sort-header class="expiration-date-month-header" *matHeaderCellDef> 
-            Month
-        </mat-header-cell>
-        <mat-cell *matCellDef="let card"> 
-            {{card.expiration_date_month}} 
-        </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="expiration_date_year">
-        <mat-header-cell mat-sort-header class="expiration-date-year-header" *matHeaderCellDef> 
-            Year 
-        </mat-header-cell>
-        <mat-cell *matCellDef="let card"> 
-            {{card.expiration_date_year}} 
         </mat-cell>
     </ng-container>
 

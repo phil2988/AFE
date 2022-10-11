@@ -1,11 +1,10 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { from, Observable, switchMap, of, tap } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { CreditCard } from 'src/app/entities/credit-card';
 
@@ -14,7 +13,6 @@ import { CreditCard } from 'src/app/entities/credit-card';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-
 export class HomePageComponent{
   dataSource = new MatTableDataSource<CreditCard>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -23,9 +21,6 @@ export class HomePageComponent{
   displayedColumns: string[] = [
     'cardholder_name',
     'card_number',
-    'csc_code',
-    'expiration_date_month',
-    'expiration_date_year',
     'issuer'
   ];
 
