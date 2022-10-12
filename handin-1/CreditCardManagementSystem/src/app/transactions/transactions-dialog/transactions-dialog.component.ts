@@ -1,11 +1,10 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppService } from 'src/app/app.service';
 import { CreditCard } from 'src/app/entities/credit-card';
 import { Transaction } from 'src/app/entities/transaction';
+import { DialogData } from '../transactions-list/transactions-list.component';
 
 @Component({
   selector: 'app-transactions-dialog',
@@ -35,31 +34,31 @@ export class TransactionsDialogComponent {
   })
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: CreditCard[] =  [],
-    private service: AppService) {
-
-  }
+    private service: AppService,
+    public dialogRef: MatDialogRef<TransactionsDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) {}
 
   onSubmit(){
     const transaction: Transaction ={
-      credit_card: this.data.find((card) => {card.card_number == +this.transactionForm.controls.card.value!}) as CreditCard,
+      credit_card: this.data.cardData.find(
+        (card) => { 
+          return card.card_number == Number(this.transactionForm.controls.card.value!)
+        }) as CreditCard,
       amount: +this.transactionForm.controls.amount.value!,
       comment: this.transactionForm.controls.comment.value!,
       currency: this.transactionForm.controls.currency.value!,
-      date: new Date(this.transactionForm.controls.date.value!).getMilliseconds(),
+      date: new Date(this.transactionForm.controls.date.value!).getTime(),
     }
 
-    console.log(this.transactionForm)
-
-    this.service.sendApiRequest<Transaction>
-    (
-      'POST',
-      "transactions",
-      transaction
-    ).subscribe((res) => {
-      if(res.status == 201){
-        console.log(res.body)
-      }
-    })
+    this.service.sendApiRequest<Transaction>('POST', "transactions", transaction)
+      .subscribe((res) => {
+        if(res.status == 201){
+          this.data.newTransaction = transaction
+          this.dialogRef.close({
+            data: this.data
+          })
+        }
+      })
   }
 }

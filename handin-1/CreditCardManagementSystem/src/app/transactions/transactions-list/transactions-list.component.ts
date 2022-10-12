@@ -1,14 +1,20 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { CreditCard } from 'src/app/entities/credit-card';
 import { Transaction } from 'src/app/entities/transaction';
 import { TransactionsDialogComponent } from '../transactions-dialog/transactions-dialog.component';
+
+export interface DialogData{
+  cardData: CreditCard[],
+  newTransaction: Transaction 
+}
 
 @Component({
   selector: 'app-transactions-list',
@@ -38,7 +44,8 @@ export class TransactionsListComponent implements AfterViewInit {
   constructor(
     private service: AppService,
     private _liveAnnouncer: LiveAnnouncer,
-    public dialog: MatDialog)
+    public dialog: MatDialog,
+    private router: Router)
   {
     this.service.sendApiRequest<Transaction[]>(
       'GET',
@@ -64,7 +71,6 @@ export class TransactionsListComponent implements AfterViewInit {
       "credit_cards"
     ).subscribe((res) => {
       if(res.status == 200){
-        console.log(res.body)
         this.cards = res.body as CreditCard[]
       }
     })
@@ -125,7 +131,7 @@ export class TransactionsListComponent implements AfterViewInit {
       return;
     }
 
-    this.selection.select(...this.dataSource.data);
+    this.selection.select(...this.dataSource.filteredData);
   }
 
   checkboxLabel(row?: Transaction): string {
@@ -136,12 +142,34 @@ export class TransactionsListComponent implements AfterViewInit {
   }
 
   addTransaction(){
-    this.dialog.open(TransactionsDialogComponent, {
-      data: this.cards
+    const dialogRef = this.dialog.open(TransactionsDialogComponent, {
+      data: <DialogData>{ cardData: this.cards, newTransaction : {}}
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res){
+        this.dataSource.data.push(res.data.newTransaction)
+      }
+      this.refresh()
     })
   }
 
   removeTransaction(){
-    console.log("Remove")
+    this.selection.selected.forEach((transaction) => {
+      this.service.sendApiRequest<Transaction>('DELETE', 'transactions/' + transaction.uid)
+        .subscribe((res)=>{
+          if(res.status == 200){
+            this.dataSource.data.splice(this.dataSource.data.findIndex((x) => {
+              x.uid === transaction.uid
+            }), 1)
+          }
+        })
+    })
+    this.refresh()
+  }
+
+  refresh(){
+    // Sorry not sorry
+    this.router.navigateByUrl("/").then(()=>{this.router.navigateByUrl("transactions")})
   }
 }

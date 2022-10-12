@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of, Unsubscribable } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { CreditCard } from 'src/app/entities/credit-card';
@@ -14,7 +14,7 @@ export class CreditCardDetailsPageComponent {
   card$!: CreditCard;
   service: AppService
 
-  constructor(private s: AppService, private route: ActivatedRoute) {
+  constructor(private s: AppService, private route: ActivatedRoute, private router: Router) {
     this.service = s
     this.route.queryParams.subscribe({
       next: (params) => {
@@ -42,6 +42,7 @@ export class CreditCardDetailsPageComponent {
     ).subscribe((res) => {
       if(res.status == 200){
         console.log(res.body)
+        this.router.navigateByUrl("/")
       }
     })
   }
