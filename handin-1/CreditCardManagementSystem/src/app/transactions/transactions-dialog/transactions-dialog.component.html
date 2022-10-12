@@ -1,0 +1,33 @@
+<h3 mat-dialog-title>Add New Transaction</h3>
+<div mat-dialog-content class="card-list">
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Card Number</mat-label>
+        <mat-select formControlName="card">
+          <mat-option *ngFor="let opt of data" [value]="opt">
+            {{ opt.card_number }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="amount-section">
+        <mat-label for="amount">Amount</mat-label>
+        <input matInput id="amount" type="text" formControlName="amount">
+      </mat-form-field>
+      <mat-form-field class="comment-section">
+        <mat-label for="comment">Comment</mat-label>
+        <input matInput id="comment" type="text" formControlName="comment">
+      </mat-form-field>
+      <mat-form-field class="date-section">
+        <mat-label for="date">Date</mat-label>
+        <input matInput id="date" type="date" formControlName="date">
+      </mat-form-field>
+      <mat-form-field class="currency-section">
+        <mat-label for="currency">Currency</mat-label>
+        <input matInput id="currency" type="text" formControlName="currency">
+      </mat-form-field>
+      <button mat-raised-button type="submit" *ngIf="transactionForm.valid">Submit</button>
+      <button mat-raised-button type="submit" disabled="true" *ngIf="!transactionForm.valid">Submit</button>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+  </div>

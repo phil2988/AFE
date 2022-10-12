@@ -4,20 +4,20 @@
       <mat-label class="top-filter-label">Filter Transactions</mat-label>
       <input matInput class="top-filter-input" (keyup)="applyFilter($event)" placeholder="Ex. 4263982640269299" #input>
     </mat-form-field>
-    <button mat-raised-button (click)="addTransaction()" class="add-button" *ngIf="selection.isEmpty()">Add new</button>
-    <button mat-raised-button (click)="removeTransaction()" class="remove-button" *ngIf="!selection.isEmpty()">Delete Selected</button>
+    <button mat-raised-button (click)="addTransaction()" class="add-button" *ngIf="selection.isEmpty() && addDeleteButton">Add new</button>
+    <button mat-raised-button (click)="removeTransaction()" class="remove-button" *ngIf="!selection.isEmpty() && addDeleteButton">Delete Selected</button>
 </div>
 
 <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="select">
-    <mat-header-cell class="select-header" *matHeaderCellDef> 
+    <mat-header-cell class="select-header" *matHeaderCellDef>
       <mat-checkbox (change)="$event ? toggleAllRows() : null"
         [checked]="selection.hasValue() && isAllSelected()"
         [indeterminate]="selection.hasValue() && !isAllSelected()"
         [aria-label]="checkboxLabel()">
       </mat-checkbox>
     </mat-header-cell>
-    <mat-cell class="select-cell" *matCellDef="let row"> 
+    <mat-cell class="select-cell" *matCellDef="let row">
       <mat-checkbox (click)="$event.stopPropagation()"
         (change)="$event ? selection.toggle(row) : null"
         [checked]="selection.isSelected(row)"
@@ -27,47 +27,47 @@
   </ng-container>
 
   <ng-container matColumnDef="card_number">
-      <mat-header-cell mat-sort-header class="credit-card-header" *matHeaderCellDef> 
-          Card Number 
+      <mat-header-cell mat-sort-header class="credit-card-header" *matHeaderCellDef>
+          Card Number
       </mat-header-cell>
-      <mat-cell class="credit-card-cell" *matCellDef="let transaction"> 
-          {{transaction.credit_card.card_number}} 
+      <mat-cell class="credit-card-cell" *matCellDef="let transaction">
+          {{transaction.credit_card.card_number}}
       </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="amount">
-      <mat-header-cell mat-sort-header class="amount-header" *matHeaderCellDef> 
-        Amount 
+      <mat-header-cell mat-sort-header class="amount-header" *matHeaderCellDef>
+        Amount
     </mat-header-cell>
-    <mat-cell class="amount-cell" *matCellDef="let transaction"> 
-        {{transaction.amount | number:"2.1-4"}} 
+    <mat-cell class="amount-cell" *matCellDef="let transaction">
+        {{transaction.amount | number:"2.1-4"}}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="comment">
-    <mat-header-cell mat-sort-header class="comment-header" *matHeaderCellDef> 
-        Comment 
+    <mat-header-cell mat-sort-header class="comment-header" *matHeaderCellDef>
+        Comment
     </mat-header-cell>
-    <mat-cell class="comment-cell" *matCellDef="let transaction"> 
-        {{transaction.comment}} 
+    <mat-cell class="comment-cell" *matCellDef="let transaction">
+        {{transaction.comment}}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="date">
-    <mat-header-cell mat-sort-header class="date-header" *matHeaderCellDef> 
-        Date 
+    <mat-header-cell mat-sort-header class="date-header" *matHeaderCellDef>
+        Date
     </mat-header-cell>
-    <mat-cell class="date-cell" *matCellDef="let transaction"> 
-        {{transaction.date | msToDate:"wwwmmmddyyyy"}} 
+    <mat-cell class="date-cell" *matCellDef="let transaction">
+        {{transaction.date | msToDate:"wwwmmmddyyyy"}}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="currency">
-    <mat-header-cell mat-sort-header class="currency-header" *matHeaderCellDef> 
-        Currency 
+    <mat-header-cell mat-sort-header class="currency-header" *matHeaderCellDef>
+        Currency
     </mat-header-cell>
-    <mat-cell class="currency-cell" *matCellDef="let transaction"> 
-        {{transaction.currency}} 
+    <mat-cell class="currency-cell" *matCellDef="let transaction">
+        {{transaction.currency}}
     </mat-cell>
   </ng-container>
 
