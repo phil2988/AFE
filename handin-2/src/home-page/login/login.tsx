@@ -1,21 +1,47 @@
-import React, { Component } from "react";
 import TextField from '@mui/material/TextField';
-import Card from '@mui/material/Card';
+import Paper from '@mui/material/Paper';
 import "./login.css"
+import { Button, Typography } from "@mui/material";
+import { useState } from 'react';
 
-interface LoginProps {
-    
+export interface userLogin{
+    email?: string,
+    password?: string
 }
 
-class Login extends Component<LoginProps> {
-    render() { 
-        return (
-            <Card className="login">
-                <TextField className="username-textfield" variant="outlined" label="Username" fullWidth/>
-                <TextField className="password-textfield" variant="outlined" label="Password" fullWidth/>
-            </Card> 
-        );
+const Login = () => {
+    const [inputs, setInputs] = useState<userLogin>({email: "", password: ""});
+
+    function submitLogin(): void {
+        console.log("Submitted login:" , inputs)
     }
+
+    return (
+        <Paper className="login" elevation={3}>
+            <form>
+                <Typography variant="h5" fontWeight={600} >Login</Typography>
+                <TextField name="email" 
+                    variant="outlined" 
+                    label="Emal" 
+                    onChange={(event) => 
+                        setInputs({ email: event.target.value, password: inputs.password })
+                    }
+                    fullWidth />
+                <TextField name="password" 
+                    variant="outlined" 
+                    label="Password" 
+                    onChange={(event) => 
+                        setInputs({password: event.target.value, email: inputs.email})
+                    }
+                    fullWidth />
+                <Button variant='contained' 
+                    onClick={() => {
+                        submitLogin();
+                    }}> Login
+                </Button>
+            </form>
+        </Paper> 
+    );
 }
  
 export default Login;
