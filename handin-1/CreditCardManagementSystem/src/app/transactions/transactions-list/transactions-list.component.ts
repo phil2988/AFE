@@ -7,8 +7,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
-import { CreditCard } from 'src/app/entities/credit-card';
-import { Transaction } from 'src/app/entities/transaction';
+import { CreditCard } from 'src/app/misc/entities/credit-card';
+import { Transaction } from 'src/app/misc/entities/transaction';
 import { TransactionsDialogComponent } from '../transactions-dialog/transactions-dialog.component';
 
 export interface DialogData{

@@ -18,7 +18,7 @@ export class AppService {
         if(type == 'GET'){
           this.http.get<T>(this.apiUrl + url, {observe: 'response'})
           .subscribe({
-            error: (e) => {
+            error: () => {
               observer.error(new HttpResponse<T>({
                 status: 400,
                 statusText: "Error"

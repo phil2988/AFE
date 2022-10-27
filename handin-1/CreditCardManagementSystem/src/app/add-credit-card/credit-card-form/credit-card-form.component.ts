@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
-import { CreditCard } from 'src/app/entities/credit-card';
+import { CreditCard } from 'src/app/misc/entities/credit-card';
 
 @Component({
   selector: 'app-credit-card-form',

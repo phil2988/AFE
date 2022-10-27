@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppService } from 'src/app/app.service';
-import { CreditCard } from 'src/app/entities/credit-card';
-import { Transaction } from 'src/app/entities/transaction';
+import { CreditCard } from 'src/app/misc/entities/credit-card';
+import { Transaction } from 'src/app/misc/entities/transaction';
 import { DialogData } from '../transactions-list/transactions-list.component';
 
 @Component({

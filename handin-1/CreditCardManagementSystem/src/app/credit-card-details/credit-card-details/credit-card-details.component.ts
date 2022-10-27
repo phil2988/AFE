@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CreditCard } from 'src/app/entities/credit-card';
+import { CreditCard } from 'src/app/misc/entities/credit-card';
 
 @Component({
   selector: 'app-credit-card-details',

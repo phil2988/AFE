@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddCreditCardPageComponent } from './add-credit-card/add-credit-card-page/add-credit-card-page.component';
-import { CreditCardDetailsPageComponent } from './credit-card-details/credit-card-details-page/credit-card-details-page.component';
-import { HomePageComponent } from './home-screen/home-page/home-page.component';
-import { TransactionsPageComponent } from './transactions/transactions-page/transactions-page.component';
+import { AddCreditCardPageComponent } from '../add-credit-card/add-credit-card-page/add-credit-card-page.component';
+import { CreditCardDetailsPageComponent } from '../credit-card-details/credit-card-details-page/credit-card-details-page.component';
+import { HomePageComponent } from '../home-screen/home-page/home-page.component';
+import { TransactionsPageComponent } from '../transactions/transactions-page/transactions-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },

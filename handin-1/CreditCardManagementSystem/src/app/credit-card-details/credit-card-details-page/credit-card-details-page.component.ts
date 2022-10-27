@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, Unsubscribable } from 'rxjs';
 import { AppService } from 'src/app/app.service';
-import { CreditCard } from 'src/app/entities/credit-card';
+import { CreditCard } from 'src/app/misc/entities/credit-card';
 
 @Component({
   selector: 'app-credit-card-details-page',

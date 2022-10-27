@@ -1,0 +1,39 @@
+mat-cell.mat-column-cardholder_name, mat-header-cell.mat-column-cardholder_name{
+    padding-left: 5%;
+    flex-basis: 15%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  mat-cell.mat-column-card_number, mat-header-cell.mat-column-card_number{
+    flex-basis: 20%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  mat-cell.mat-column-issuer, mat-header-cell.mat-column-issuer{
+    justify-content: center;
+    padding-right: 5%;
+    flex-basis: 15%;
+  }
+  
+  .mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+  
+  ::ng-deep mat-header-cell.card-number-header div.mat-sort-header-container{
+    padding-left: 18px;
+  }
+  ::ng-deep mat-header-cell.issuer-header div.mat-sort-header-container{
+    padding-left: 18px;
+  }
+  ::ng-deep mat-header-cell.cardholder-name-header div.mat-sort-header-container{
+    padding-left: 18px;
+  }
+  

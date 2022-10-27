@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './misc/app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -15,9 +15,8 @@ import { AddCreditCardModule } from './add-credit-card/add-credit-card.module';
 import { AppService } from './app.service';
 import { CreditCardDetailsModule } from './credit-card-details/credit-card-details.module';
 import { HomeScreenModule } from './home-screen/home-screen.module';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './misc/navigation/navigation.component';
 import { TransactionsModule } from './transactions/transactions.module';
-import { MsToDatePipe } from './ms-to-date.pipe';
 
 @NgModule({
   declarations: [
