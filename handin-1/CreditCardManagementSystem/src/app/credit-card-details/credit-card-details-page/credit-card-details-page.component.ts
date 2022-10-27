@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of, Unsubscribable } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { CreditCard } from 'src/app/misc/entities/credit-card';
 
@@ -14,8 +13,8 @@ export class CreditCardDetailsPageComponent {
   card$!: CreditCard;
   service: AppService
 
-  constructor(private s: AppService, private route: ActivatedRoute, private router: Router) {
-    this.service = s
+  constructor(private appService: AppService, private route: ActivatedRoute, private router: Router) {
+    this.service = appService
     this.route.queryParams.subscribe({
       next: (params) => {
         // Should use an uid instead, but data does not have a uid defined
@@ -28,7 +27,6 @@ export class CreditCardDetailsPageComponent {
       "credit_cards/" + this.cardNumber
     ).subscribe((res) => {
       if(res.status == 200){
-        console.log(res.body)
         this.card$ = res.body as CreditCard
       }
     })

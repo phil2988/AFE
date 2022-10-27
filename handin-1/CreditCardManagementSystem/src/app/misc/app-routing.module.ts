@@ -1,16 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddCreditCardPageComponent } from '../add-credit-card/add-credit-card-page/add-credit-card-page.component';
-import { CreditCardDetailsPageComponent } from '../credit-card-details/credit-card-details-page/credit-card-details-page.component';
-import { HomePageComponent } from '../home-screen/home-page/home-page.component';
-import { TransactionsPageComponent } from '../transactions/transactions-page/transactions-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'home', component: HomePageComponent },
-  { path: 'transactions', component: TransactionsPageComponent},
-  { path: 'add-credit-card', component: AddCreditCardPageComponent },
-  { path: 'credit-card-details', component: CreditCardDetailsPageComponent },
+  { 
+    path: '', 
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  { 
+    path: 'home', 
+    loadChildren: () => import(
+      '../home-screen/home-screen.module'
+    ).then(r => r.HomeScreenModule) 
+  },
+  { 
+    path: 'transactions', 
+    loadChildren: () => import(
+      '../transactions/transactions.module'
+    ).then(r => r.TransactionsModule)
+  },
+  { 
+    path: 'add-credit-card', 
+    loadChildren: () => import(
+      '../add-credit-card/add-credit-card.module'
+    ).then(r => r.AddCreditCardModule) 
+  },
+  { 
+    path: 'credit-card-details', 
+    loadChildren: () => import(
+      '../credit-card-details/credit-card-details.module'
+    ).then(r => r.CreditCardDetailsModule) 
+  },
 ];
 
 @NgModule({

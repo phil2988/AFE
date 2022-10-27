@@ -6,6 +6,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HomeListComponent } from './home-list/home-list.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [{path: '', component: HomePageComponent}]
 
 @NgModule({
   declarations: [
@@ -13,6 +16,7 @@ import { HomeListComponent } from './home-list/home-list.component';
     HomeListComponent,
   ],
   imports: [
+    RouterModule.forChild(routes),
     CommonModule,
     MatTableModule,
     MatSortModule,

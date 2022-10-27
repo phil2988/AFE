@@ -5,6 +5,9 @@ import { CreditCardFormComponent } from './credit-card-form/credit-card-form.com
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [{path: '', component: AddCreditCardPageComponent}]
 
 @NgModule({
   declarations: [
@@ -12,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
     CreditCardFormComponent,
   ],
   imports: [
+    RouterModule.forChild(routes),
     CommonModule,
 
     ReactiveFormsModule,
