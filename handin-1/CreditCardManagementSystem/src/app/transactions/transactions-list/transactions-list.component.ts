@@ -1,14 +1,23 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
+import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { CreditCard } from 'src/app/misc/entities/credit-card';
 import { Transaction } from 'src/app/misc/entities/transaction';
+import { MsToDatePipe } from 'src/app/pipes/date-pipe/ms-to-date.pipe';
 import { TransactionsDialogComponent } from '../transactions-dialog/transactions-dialog.component';
 
 export interface DialogData{
@@ -17,6 +26,24 @@ export interface DialogData{
 }
 
 @Component({
+  standalone: true,
+  imports:[
+    DecimalPipe,
+    MsToDatePipe,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatListModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+  ],
   selector: 'app-transactions-list',
   templateUrl: './transactions-list.component.html',
   styleUrls: ['./transactions-list.component.css']

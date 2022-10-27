@@ -21,9 +21,9 @@ import { TransactionsModule } from './transactions/transactions.module';
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,
   ],
   imports: [
+    NavigationComponent,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

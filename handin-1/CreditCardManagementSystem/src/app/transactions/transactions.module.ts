@@ -23,12 +23,11 @@ const routes: Routes = [{path: '', component: TransactionsPageComponent}]
 @NgModule({
   declarations: [
     TransactionsPageComponent,
-    TransactionsListComponent,
-    MsToDatePipe,
     TransactionsDialogComponent
   ],
   imports: [
     RouterModule.forChild(routes),
+    TransactionsListComponent,
     CommonModule,
     MatTableModule,
     HttpClientModule,
@@ -45,7 +44,6 @@ const routes: Routes = [{path: '', component: TransactionsPageComponent}]
     FormsModule,
   ],
   exports:[
-    TransactionsListComponent
   ]
 })
 export class TransactionsModule { }

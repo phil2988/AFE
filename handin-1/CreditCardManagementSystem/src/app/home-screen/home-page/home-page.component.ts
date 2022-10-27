@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeListComponent } from '../home-list/home-list.component';
 
 @Component({
   selector: 'app-home-page',
