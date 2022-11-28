@@ -1,22 +1,84 @@
-import { Component } from "react";
-import Login from "./login/login";
-import "./home-page.css"
+import { Box, Button, Typography } from '@mui/material';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import API from '../core/axios';
+import { UserType } from '../core/types';
+import { saveUser, getUser, clearUser } from '../core/user-utils';
 
-interface HomeProps {
-    
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface HomeProps {}
 
-class HomePage extends Component<HomeProps> {
-    render() { 
+const HomePage = () => {
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState(getUser());
+  useEffect(() => {
+    API.get<UserType[]>('Users', {
+      headers: {
+        Authorization: user.jwt
+      }
+    }).then((resp) => {
+      setUser((old) => {
+        return { ...old, ...resp.data.find((u) => u.email == user.email) };
+      });
+      saveUser(user);
+    });
+  }, []);
+
+  const displayAccountOptions = () => {
+    switch (user.accountType) {
+      case 'Client':
+        break;
+      case 'PersonalTrainer':
+        break;
+      case 'Manager':
         return (
-            <div className="home-page">
-                <h1>Home Page</h1>
-                <div className="login-container">
-                    <Login/>
-                </div>
-            </div>
+          <Box>
+            <Button
+              variant="contained"
+              onClick={() => {
+                navigate('/create-personal-trainer');
+              }}
+            >
+              Add Personal Trainer
+            </Button>
+          </Box>
         );
+      default:
+        break;
     }
-}
- 
+  };
+
+  return (
+    <Box
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}
+    >
+      <>
+        <Typography variant="h3" m="4vh">
+          Welcome {user.firstName ?? 'User'}, {user.lastName ?? ''}
+        </Typography>
+
+        <Typography variant="h5">Here are your options</Typography>
+
+        <Box style={{ display: 'flex', gap: '2vh', margin: '2vh' }}>
+          {displayAccountOptions()}
+          <Button
+            variant="contained"
+            onClick={() => {
+              clearUser();
+            }}
+          >
+            Log out
+          </Button>
+        </Box>
+      </>
+    </Box>
+  );
+};
+
 export default HomePage;
