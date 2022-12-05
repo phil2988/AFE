@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import { Box, Button, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import API from '../core/axios';
 import { UserLoginType, UserType } from '../core/types';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -9,14 +9,33 @@ import { getUser, saveUser } from '../core/user-utils';
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
-  const [user, setUser] = useState(getUser());
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [waitingForResponse, setWaitingForResponse] = useState(false);
+
+  useEffect(() => {
+    const keyDownHandler = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        submitLogin();
+      }
+    };
+
+    document.addEventListener('keydown', keyDownHandler);
+
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, []);
 
   const navigate = useNavigate();
+
   function submitLogin(): void {
+    setWaitingForResponse(true);
     const body: UserLoginType = {
-      email: user.email,
-      password: user.password
+      email: email,
+      password: password
     };
 
     API.post<UserLoginType>('Users/login', body)
@@ -27,28 +46,43 @@ const LoginForm = () => {
               ...getUser(),
               loggedIn: true,
               jwt: 'Bearer ' + resp.data.jwt,
-              email: user.email
+              email: email
             });
           }
         },
         () => {
+          setWaitingForResponse(false);
           setErrorMessage('Error! Invalid login!');
         }
       )
-      .then(() => {
-        API.get<UserType[]>('Users', {
-          headers: {
-            Authorization: getUser().jwt
-          }
-        }).then((resp) => {
-          saveUser({
-            ...getUser(),
-            ...resp.data.find((u) => u.email == user.email)
-          });
-          navigate('/');
-          window.location.reload();
-        });
-      });
+      .then(
+        () => {
+          API.get<UserType[]>('Users', {
+            headers: {
+              Authorization: getUser().jwt
+            }
+          }).then(
+            (resp) => {
+              saveUser({
+                ...getUser(),
+                ...resp.data.find((u) => u.email == email)
+              });
+              navigate('/');
+              window.location.reload();
+            },
+            (e) => {
+              setWaitingForResponse(false);
+              console.log(e);
+              setErrorMessage('Error! Was not allowed to fetch user!');
+            }
+          );
+        },
+        (e) => {
+          setWaitingForResponse(false);
+          console.log(e);
+          setErrorMessage('Error! Invalid login!');
+        }
+      );
   }
 
   return (
@@ -83,26 +117,19 @@ const LoginForm = () => {
           variant="outlined"
           label="Email"
           fullWidth
-          value={user.email}
-          onChange={(e) =>
-            setUser((old) => {
-              return { ...old, email: e.target.value };
-            })
-          }
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
           variant="outlined"
           label="Password"
           fullWidth
           type="password"
-          value={user.password}
-          onChange={(e) =>
-            setUser((old) => {
-              return { ...old, password: e.target.value };
-            })
-          }
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Button
+          disabled={waitingForResponse}
           variant="contained"
           onClick={() => {
             submitLogin();

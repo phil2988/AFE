@@ -31,7 +31,22 @@ const HomePage = () => {
       case 'Client':
         break;
       case 'PersonalTrainer':
-        break;
+        return (
+          <Box display="flex" gap="10px">
+            <Button
+              variant="contained"
+              onClick={() => {
+                navigate('/create-client');
+              }}
+            >
+              Create client
+            </Button>
+            <Button variant="contained">Create program</Button>
+            <Button variant="contained">Add exercise to program</Button>
+            <Button variant="contained">See programs</Button>
+            <Button variant="contained">See clients</Button>
+          </Box>
+        );
       case 'Manager':
         return (
           <Box>
@@ -63,19 +78,22 @@ const HomePage = () => {
           Welcome {user.firstName ?? 'User'}, {user.lastName ?? ''}
         </Typography>
 
-        <Typography variant="h5">Here are your options</Typography>
+        <Typography variant="h5">
+          Here are the options available for your account type
+        </Typography>
 
         <Box style={{ display: 'flex', gap: '2vh', margin: '2vh' }}>
           {displayAccountOptions()}
-          <Button
-            variant="contained"
-            onClick={() => {
-              clearUser();
-            }}
-          >
-            Log out
-          </Button>
         </Box>
+
+        <Button
+          variant="contained"
+          onClick={() => {
+            clearUser();
+          }}
+        >
+          Log out
+        </Button>
       </>
     </Box>
   );

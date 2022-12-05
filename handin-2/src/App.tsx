@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './home-page/home-page';
 import LoginPage from './login/login-page';
 import { getUser } from './core/user-utils';
-import CreatePersonalTrainer from './users/create-personal-trainer-form';
+import CreatePersonalTrainer from './personal-trainer/create-personal-trainer-form';
+import CreateClient from './client/create-client-form';
 
 function App() {
   if (!getUser().loggedIn) return <LoginPage />;
@@ -16,6 +17,7 @@ function App() {
         />
         <Route path="*" element={<HomePage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/create-client" element={<CreateClient />} />
       </Routes>
     </div>
   );

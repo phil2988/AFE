@@ -11,7 +11,7 @@ export type UserType = {
   password?: string;
   personalTrainerId?: number;
   accountType?: AccountType;
-  loggedIn: boolean;
+  loggedIn?: boolean;
   jwt?: string
 }
 

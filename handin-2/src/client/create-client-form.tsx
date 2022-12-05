@@ -15,11 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface CreatePersonalTrainerProps {}
+interface CreateClientProps {}
 
-const CreatePersonalTrainer: FunctionComponent<
-  CreatePersonalTrainerProps
-> = () => {
+const CreateClient: FunctionComponent<CreateClientProps> = () => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -34,8 +32,8 @@ const CreatePersonalTrainer: FunctionComponent<
       firstName,
       lastName,
       password,
-      loggedIn: true,
-      accountType: 'PersonalTrainer'
+      accountType: 'Client',
+      personalTrainerId: getUser().userId
     };
     API.post('Users', data, {
       headers: {
@@ -55,12 +53,11 @@ const CreatePersonalTrainer: FunctionComponent<
       }
     );
   };
-
   const handleCancel = () => {
     console.log('Cancelled');
   };
 
-  if (getUser().accountType != 'Manager')
+  if (getUser().accountType != 'PersonalTrainer')
     return (
       <Typography variant="h3" textAlign="center">
         You do not have access to this page
@@ -77,14 +74,14 @@ const CreatePersonalTrainer: FunctionComponent<
       <Paper
         elevation={3}
         style={{
-          marginTop: '10vh',
+          marginTop: '8vh',
           width: '70vw',
-          padding: '10px',
+          padding: '30px',
           minHeight: '70vh'
         }}
       >
-        <Typography variant="h3" textAlign="center" p="2vh">
-          Create personal trainer account
+        <Typography variant="h3" textAlign="center" pb="2vh">
+          Create client account
         </Typography>
 
         <FormGroup style={{ gap: '2vh' }}>
@@ -140,4 +137,4 @@ const CreatePersonalTrainer: FunctionComponent<
   );
 };
 
-export default CreatePersonalTrainer;
+export default CreateClient;
