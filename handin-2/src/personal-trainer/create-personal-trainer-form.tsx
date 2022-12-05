@@ -42,7 +42,6 @@ const CreatePersonalTrainer: FunctionComponent<
       }
     }).then(
       (resp) => {
-        console.log(resp);
         if (resp.status == 201) {
           navigate('/');
         }
@@ -56,7 +55,7 @@ const CreatePersonalTrainer: FunctionComponent<
   };
 
   const handleCancel = () => {
-    console.log('Cancelled');
+    navigate('/');
   };
 
   if (getUser().accountType != 'Manager')

@@ -54,7 +54,7 @@ const CreateClient: FunctionComponent<CreateClientProps> = () => {
     );
   };
   const handleCancel = () => {
-    console.log('Cancelled');
+    navigate('/');
   };
 
   if (getUser().accountType != 'PersonalTrainer')
