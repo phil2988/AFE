@@ -19,8 +19,8 @@ export type ExerciseType = {
   sets: number
   repetitions: number
   time: string
-  workoutProgramId: number
-  personalTrainerId: number
+  workoutProgramId?: number
+  personalTrainerId?: number
 }
 
 export type UserType = {

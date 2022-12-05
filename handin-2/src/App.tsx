@@ -1,4 +1,3 @@
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './home-page/home-page';
 import LoginPage from './login/login-page';
@@ -6,6 +5,7 @@ import { getUser } from './core/user-utils';
 import CreatePersonalTrainer from './personal-trainer/create-personal-trainer-form';
 import CreateClient from './client/create-client-form';
 import CreateWorkout from './workout/create-workout-form';
+import AddExerciseToWorkout from './exercise/create-exercise-form';
 
 function App() {
   if (!getUser().loggedIn) return <LoginPage />;
@@ -20,6 +20,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/create-client" element={<CreateClient />} />
         <Route path="/create-workout" element={<CreateWorkout />} />
+        <Route path="/create-exercise" element={<AddExerciseToWorkout />} />
       </Routes>
     </div>
   );
