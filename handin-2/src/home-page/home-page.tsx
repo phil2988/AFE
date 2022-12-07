@@ -57,7 +57,14 @@ const HomePage = () => {
             >
               Add exercise to program
             </Button>
-            <Button variant="contained">See programs</Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                navigate('/see-workouts');
+              }}
+            >
+              See programs
+            </Button>
             <Button variant="contained">See clients</Button>
           </Box>
         );

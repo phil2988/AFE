@@ -6,6 +6,8 @@ import CreatePersonalTrainer from './personal-trainer/create-personal-trainer-fo
 import CreateClient from './client/create-client-form';
 import CreateWorkout from './workout/create-workout-form';
 import AddExerciseToWorkout from './exercise/create-exercise-form';
+import SeeWorkout from './workout/see-workouts';
+import SeeWorkouts from './workout/see-workouts';
 
 function App() {
   if (!getUser().loggedIn) return <LoginPage />;
@@ -21,6 +23,7 @@ function App() {
         <Route path="/create-client" element={<CreateClient />} />
         <Route path="/create-workout" element={<CreateWorkout />} />
         <Route path="/create-exercise" element={<AddExerciseToWorkout />} />
+        <Route path="/see-workouts" element={<SeeWorkouts />} />
       </Routes>
     </div>
   );
