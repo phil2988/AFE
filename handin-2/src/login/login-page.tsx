@@ -41,6 +41,7 @@ const LoginForm = () => {
     API.post<UserLoginType>('Users/login', body)
       .then(
         (resp: AxiosResponse) => {
+          console.log(resp);
           if (resp.status == 200) {
             saveUser({
               ...getUser(),

@@ -61,16 +61,13 @@ const SeeWorkouts: FunctionComponent<SeeWorkoutsProps> = () => {
             maxHeight: '70vh'
           }}
         >
-          <Button
-            variant="contained"
-            style={{ background: '#BA0E0E' }}
-            onClick={() => navigate('/')}
-          >
-            Go Back
-          </Button>
+          <Typography textAlign="center" variant="h3">
+            All Workouts
+          </Typography>
           <List
             sx={{
               marginTop: '2vh',
+              marginBottom: '2vh',
               overflow: 'auto'
             }}
           >
@@ -85,6 +82,13 @@ const SeeWorkouts: FunctionComponent<SeeWorkoutsProps> = () => {
               );
             })}
           </List>
+          <Button
+            variant="contained"
+            style={{ background: '#BA0E0E' }}
+            onClick={() => navigate('/')}
+          >
+            Go Back
+          </Button>
         </Box>
       </Paper>
     </Box>

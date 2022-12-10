@@ -57,7 +57,7 @@ const AddExerciseToWorkout: FunctionComponent<
             Authorization: getUser().jwt
           }
         }).then(() => {
-          console.log();
+          navigate('/');
         });
       });
   };
@@ -89,7 +89,7 @@ const AddExerciseToWorkout: FunctionComponent<
         }}
       >
         <Typography variant="h3" textAlign="center" pb="2vh">
-          Create client account
+          Add new exercise to workout
         </Typography>
 
         <FormGroup style={{ gap: '2vh' }}>

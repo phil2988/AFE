@@ -44,6 +44,9 @@ const CreateWorkout: FunctionComponent<CreateWorkoutProps> = () => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(exercises);
+  }, [exercises]);
   const createUnselectedExercisesListView = () => {
     return exercises.map((exercise) => (
       <ListItem
@@ -54,7 +57,6 @@ const CreateWorkout: FunctionComponent<CreateWorkoutProps> = () => {
               setSelectedExercises((old) => {
                 return [...old, exercise];
               });
-
               setExercises((old) => {
                 const newArr: ExerciseType[] = [];
 

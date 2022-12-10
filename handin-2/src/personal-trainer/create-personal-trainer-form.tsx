@@ -36,12 +36,14 @@ const CreatePersonalTrainer: FunctionComponent<
       password,
       accountType: 'PersonalTrainer'
     };
+    console.log(data);
     API.post('Users', data, {
       headers: {
         Authorization: getUser().jwt
       }
     }).then(
       (resp) => {
+        console.log(resp);
         if (resp.status == 201) {
           navigate('/');
         }
