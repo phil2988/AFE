@@ -8,6 +8,7 @@ import CreateWorkout from './workout/create-workout-form';
 import AddExerciseToWorkout from './exercise/create-exercise-form';
 import SeeWorkout from './workout/see-workouts';
 import SeeWorkouts from './workout/see-workouts';
+import SeeClients from './client/see-clients';
 
 function App() {
   if (!getUser().loggedIn) return <LoginPage />;
@@ -24,6 +25,7 @@ function App() {
         <Route path="/create-workout" element={<CreateWorkout />} />
         <Route path="/create-exercise" element={<AddExerciseToWorkout />} />
         <Route path="/see-workouts" element={<SeeWorkouts />} />
+        <Route path="/see-clients" element={<SeeClients />} />
       </Routes>
     </div>
   );

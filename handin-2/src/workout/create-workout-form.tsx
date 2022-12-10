@@ -142,6 +142,7 @@ const CreateWorkout: FunctionComponent<CreateWorkoutProps> = () => {
       }
     });
   };
+
   const handleCancel = () => {
     navigate('/');
   };

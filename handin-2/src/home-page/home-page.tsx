@@ -63,9 +63,16 @@ const HomePage = () => {
                 navigate('/see-workouts');
               }}
             >
-              See programs
+              See workout programs
             </Button>
-            <Button variant="contained">See clients</Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                navigate('/see-clients');
+              }}
+            >
+              See clients
+            </Button>
           </Box>
         );
       case 'Manager':
